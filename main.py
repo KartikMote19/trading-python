@@ -232,19 +232,15 @@ label11=Label(window,image=logo,height=200,width=200)
 label11.place(x=550,y=35)
 
 def see_P_L():
-
-    a=0
+    a = 0
     for stock in portfolio:
-        a=a+(int(portfolio[stock])*int(find_cost(stock)))
-    p=a-money_invested
-    r=round(p,3)
+        # Convert portfolio quantity to integer for multiplication
+        stock_quantity = int(portfolio[stock])
+        stock_price = find_cost(stock)  # Get the current price of the stock
+        a += stock_quantity * stock_price  # Add the value of current holdings
+    p = a - money_invested  # Calculate profit or loss
+    r = round(p, 3)  # Round to 3 decimal places
     label3.config(text=f"Profit and loss = {r}          ")
-
-
-
-
-
-
 
 button3 = Button(text="Current P&L",command=see_P_L,font=('Arial',25,'bold'),bg='#AAFFFE',fg='black',borderwidth=7,width=10,height=1)
 button3.place(x=30,y=225)
